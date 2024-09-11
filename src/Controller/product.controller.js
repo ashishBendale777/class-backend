@@ -46,3 +46,33 @@ exports.deleteProduct = async (req, res) => {
         res.status(500).json({ message: "something went wrong" })
     }
 }
+
+exports.updateRating = async (req, res) => {
+    try {
+
+        const prod = await Product.findOneAndUpdate({
+            _id: req.params.pid
+        }, {
+            rating: req.body.rating
+        }, { new: false })
+        res.status(200).json(prod)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "something went wrong" })
+    }
+}
+
+exports.prodByColor = async (req, res) => {
+    try {
+
+        const prod = await Product.find({ color: req.body.color })
+        res.status(200).json(prod)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "something went wrong" })
+    }
+}
+
+// {
+//     "rating":2.3
+// }
