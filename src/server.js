@@ -2,7 +2,7 @@ const express = require("express");
 const bodyparser = require("body-parser");
 const cors = require("cors");
 const connectDB = require("./DB/connectDB")
-
+const userRoutes = require("./Routes/user.Routes")
 
 
 const app = express();
@@ -22,6 +22,7 @@ app.post("/create", (req, res) => {
 
 
 app.use("/api", require("./Routes/Routes"))
+app.use("/api", userRoutes)
 
 app.listen(8080, () => {
   console.log("server started at 8080");
